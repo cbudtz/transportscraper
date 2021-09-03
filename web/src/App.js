@@ -10,11 +10,18 @@ function App() {
         const res = await fetch("http://localhost:5000/"+page)
         const text = await res.text();
         var dom = new DOMParser().parseFromString(text,"text/html")
-        var results = dom.querySelectorAll("#results")
         console.log(dom.getElementById("results"));
-        await setScrape(dom.getElementById("results").getElementsByClassName("jobsearch-result").item(0).getElementsByClassName("jobad-element-menu-share").item(0).getAttribute("data-share-title"));
-        let scrapetmp = scrape
-        setScrape(scrapetmp + dom.getElementById("results").getElementsByClassName("jobsearch-result").item(0).getElementsByTagName("time").item(0).innerText)
+        let jobArray = []
+        var resultArray = dom.getElementById("results").getElementsByClassName("jobsearch-result");
+        for (let i = 0 ; i < resultArray.length; i ++){
+            let job = resultArray.item(i)
+            console.log(job)
+            const title = job.getElementsByClassName("PaidJob-inner").item(0).getElementsByTagName("a").item(1).innerText;
+            const description = job.getElementsByClassName("PaidJob-inner").item(0).innerText
+            const time = job.getElementsByTagName("time").item(0).innerText
+            jobArray.push({title: title,description:description, time:time})
+        }
+        setScrape(JSON.stringify(jobArray))
     }
 
     return (
