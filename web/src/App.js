@@ -3,11 +3,13 @@ import {useState} from "react";
 import {Button, Grid, TextField} from "@material-ui/core";
 // import {JSDOM} from "jsdom";
 
+const BASE_URL = process.env.NODE_ENV==="development" ? "http://localhost:5000/" : "/"
+
 function App() {
     const [page, setPage] = useState(1);
     const [scrape, setScrape] = useState("");
     async function scrapeUrl() {
-        const res = await fetch("http://localhost:5000/"+page)
+        const res = await fetch(BASE_URL+page)
         const text = await res.text();
         var dom = new DOMParser().parseFromString(text,"text/html")
         console.log(dom.getElementById("results"));
@@ -35,7 +37,7 @@ function App() {
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={10}>
-                        <TextField fullWidth multiline minRows={6} value={scrape}></TextField>
+                        <TextField fullWidth multiline minRows={6} value={scrape}/>
                 </Grid>
             </Grid>
         </div>

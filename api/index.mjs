@@ -2,9 +2,10 @@ import express from 'express'
 import fetch from 'node-fetch';
 import cors from 'cors';
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
  app.use(cors());
+ app.use(express.static("static"))
 
 app.get('/:page', async (req, res) => {
     const page = req.params.page
@@ -14,5 +15,6 @@ app.get('/:page', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:${port}`)
+    console.log(process.env)
 })
