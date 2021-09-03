@@ -4,4 +4,5 @@ COPY /api/package.json ./api/
 COPY /api/* ./api/
 COPY /api/static/ ./api/static/
 WORKDIR /tmp/api/
+RUN yarn install
 CMD ["yarn", "prod"]
