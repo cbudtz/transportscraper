@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="Scrape start">
+    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="Dockerfile update">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
@@ -53,7 +54,7 @@
       <workItem from="1630669213618" duration="100000" />
       <workItem from="1630669345132" duration="2816000" />
       <workItem from="1630679521064" duration="4018000" />
-      <workItem from="1630696564280" duration="3274000" />
+      <workItem from="1630696564280" duration="3480000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1630679729920</created>
@@ -90,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630702840323</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Dockerfile update">
+      <created>1630703290462</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1630703290462</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +123,7 @@
     </ignored-roots>
     <MESSAGE value="init commit" />
     <MESSAGE value="Scrape start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scrape start" />
+    <MESSAGE value="Dockerfile update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dockerfile update" />
   </component>
 </project>

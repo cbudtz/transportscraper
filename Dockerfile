@@ -8,6 +8,7 @@ RUN yarn build
 
 
 FROM node:14-alpine as MAIN
+WORKDIR /tmp/
 COPY /api/package.json ./api/
 COPY /api/* ./api/
 COPY --from=REACT /tmp/build/ ./api/static/
