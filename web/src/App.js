@@ -9,10 +9,12 @@ function App() {
     async function scrapeUrl() {
         const res = await fetch("http://localhost:5000/"+page)
         const text = await res.text();
-        //setScrape(text);
-        //let dom = new JSDOM(text);
-        //setScrape(dom.window.document.querySelector("results").innerHTML);
-
+        var dom = new DOMParser().parseFromString(text,"text/html")
+        var results = dom.querySelectorAll("#results")
+        console.log(dom.getElementById("results"));
+        await setScrape(dom.getElementById("results").getElementsByClassName("jobsearch-result").item(0).getElementsByClassName("jobad-element-menu-share").item(0).getAttribute("data-share-title"));
+        let scrapetmp = scrape
+        setScrape(scrapetmp + dom.getElementById("results").getElementsByClassName("jobsearch-result").item(0).getElementsByTagName("time").item(0).innerText)
     }
 
     return (
