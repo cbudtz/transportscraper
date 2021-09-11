@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="Dockerfile update">
+    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="Multipage scrape">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/web/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,8 @@
       <workItem from="1630669345132" duration="2816000" />
       <workItem from="1630679521064" duration="4018000" />
       <workItem from="1630696564280" duration="3480000" />
-      <workItem from="1631300021121" duration="4217000" />
+      <workItem from="1631300021121" duration="4773000" />
+      <workItem from="1631341303203" duration="1080000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1630679729920</created>
@@ -100,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630703290462</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Multipage scrape">
+      <created>1631306195221</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1631306195221</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +133,7 @@
     <MESSAGE value="init commit" />
     <MESSAGE value="Scrape start" />
     <MESSAGE value="Dockerfile update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dockerfile update" />
+    <MESSAGE value="Multipage scrape" />
+    <option name="LAST_COMMIT_MESSAGE" value="Multipage scrape" />
   </component>
 </project>

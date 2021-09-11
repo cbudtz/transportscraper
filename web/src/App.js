@@ -6,12 +6,17 @@ import * as jsonexport from "jsonexport/dist"
 const BASE_URL = process.env.NODE_ENV==="development" ? "http://localhost:5000/" : "/"
 
 function App() {
+    const [url, setUrl] = useState("https://www.jobindex.dk/jobsoegning?q=transport")
     const [page, setPage] = useState(1);
     const [scrape, setScrape] = useState("");
     async function scrapeUrl() {
         let jobArray = []
         for (let i=page;i <200;i++ ) {
-            const res = await fetch(BASE_URL + i)
+            const res = await fetch(BASE_URL ,{
+                method:"POST",
+                body:JSON.stringify({url:url+"&page=" + i} ),
+                headers: {"Content-Type":"application/json"}
+            })
             const text = await res.text();
             var dom = new DOMParser().parseFromString(text, "text/html")
       //      console.log(dom.getElementById("results"));
@@ -28,15 +33,16 @@ function App() {
                 const time = job.getElementsByTagName("time")?.item(0)?.innerText
                 jobArray.push({title: title, description: description, time: time})
             }
-            await (async ()=>setPage(page+i))()
+            setPage(page+i)
         }
         setScrape(JSON.stringify(jobArray))
         const repJSON = JSON.parse(JSON.stringify(jobArray).replace("\n\n","  "))
-        const csv = await jsonexport(repJSON,{rowDelimiter: ";"},(err,csv)=>{
+        await jsonexport(repJSON,{rowDelimiter: ";"},(err,csv)=>{
             if (err) return console.error(err);
             console.log(csv)
             setScrape(csv)
         })
+        setPage(1)
     }
 
     function saveTextAsFile(textToWrite, fileNameToSaveAs)
@@ -60,13 +66,14 @@ function App() {
             <Grid container>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={10} >
+                    <TextField label={"Url"}fullWidth value={url} onChange={(e)=>setUrl(e.target.value)}/>
                     <Button onClick={scrapeUrl}>Scrape</Button>
                     <div>Scraping page: {page}</div>
                 </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={10}>
-                    <Button onClick={()=>saveTextAsFile(scrape,"scrape.csv")}>Download</Button>
+                    <Button onClick={()=>saveTextAsFile(scrape,"scrape.csv")}>Download as csv (separated by ";")</Button>
                 </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={1}> </Grid>
