@@ -31,7 +31,8 @@ function App() {
                 let description = job.getElementsByClassName("PaidJob-inner")?.item(0)?.innerText;
                 description = description || job.getElementsByClassName("jix_robotjob-inner").item(0)?.innerText.trim();
                 const time = job.getElementsByTagName("time")?.item(0)?.innerText
-                jobArray.push({title: title, description: description, time: time})
+                let id = job.getElementsByTagName("div")?.item(0).getAttribute("data-beacon-tid").trim()
+                jobArray.push({id: id, title: title, description: description, time: time})
             }
             setPage(page+i)
         }
