@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="flexible url for scraping">
+    <list default="true" id="5843bc9a-7c93-46c0-b07b-61dcfbfae96d" name="Default Changelist" comment="now with ids">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.js" afterDir="false" />
     </list>
@@ -55,7 +55,9 @@
       <workItem from="1630679521064" duration="4018000" />
       <workItem from="1630696564280" duration="3480000" />
       <workItem from="1631300021121" duration="4773000" />
-      <workItem from="1631341303203" duration="1967000" />
+      <workItem from="1631341303203" duration="2070000" />
+      <workItem from="1632139336814" duration="283000" />
+      <workItem from="1634214891531" duration="3623000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1630679729920</created>
@@ -113,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631342454313</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="now with ids">
+      <created>1631343361533</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1631343361533</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +150,7 @@
     <MESSAGE value="Dockerfile update" />
     <MESSAGE value="Multipage scrape" />
     <MESSAGE value="flexible url for scraping" />
-    <option name="LAST_COMMIT_MESSAGE" value="flexible url for scraping" />
+    <MESSAGE value="now with ids" />
+    <option name="LAST_COMMIT_MESSAGE" value="now with ids" />
   </component>
 </project>

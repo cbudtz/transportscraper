@@ -8,6 +8,9 @@ const BASE_URL = process.env.NODE_ENV==="development" ? "http://localhost:5000/"
 function App() {
     const [url, setUrl] = useState("https://www.jobindex.dk/jobsoegning?q=transport")
     const [page, setPage] = useState(1);
+    const [delimiter, setDelimiter] = useState(";")
+    const [endOfLine, setEndofLine] = useState("^R")
+    const [lineTermination, setLineTermination] = useState("")
     const [scrape, setScrape] = useState("");
     async function scrapeUrl() {
         let jobArray = []
@@ -19,17 +22,18 @@ function App() {
             })
             const text = await res.text();
             var dom = new DOMParser().parseFromString(text, "text/html")
-      //      console.log(dom.getElementById("results"));
+            //      console.log(dom.getElementById("results"));
 
             var resultArray = dom.getElementById("results").getElementsByClassName("jobsearch-result");
             if (resultArray.length<1) {break;}
             for (let i = 0; i < resultArray.length; i++) {
                 let job = resultArray.item(i)
-                console.log(job)
                 let title = job.getElementsByClassName("PaidJob-inner")?.item(0)?.getElementsByTagName("a").item(1).innerText;
                 title = title || job.getElementsByClassName("jix_robotjob-inner").item(0)?.getElementsByTagName("a").item(0).innerText.trim();
                 let description = job.getElementsByClassName("PaidJob-inner")?.item(0)?.innerText;
                 description = description || job.getElementsByClassName("jix_robotjob-inner").item(0)?.innerText.trim();
+                description = description.replace(/(\r\n|\n|\r)/gm, endOfLine);
+                console.log(description)
                 const time = job.getElementsByTagName("time")?.item(0)?.innerText
                 let id = job.getElementsByTagName("div")?.item(0).getAttribute("data-beacon-tid").trim()
                 jobArray.push({id: id, title: title, description: description, time: time})
@@ -37,8 +41,11 @@ function App() {
             setPage(page+i)
         }
         setScrape(JSON.stringify(jobArray))
+        console.log(jobArray);
+
         const repJSON = JSON.parse(JSON.stringify(jobArray).replace("\n\n","  "))
-        await jsonexport(repJSON,{rowDelimiter: ";"},(err,csv)=>{
+
+        await jsonexport(repJSON,{rowDelimiter: delimiter},(err,csv)=>{
             if (err) return console.error(err);
             console.log(csv)
             setScrape(csv)
@@ -67,14 +74,26 @@ function App() {
             <Grid container>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={10} >
-                    <TextField label={"Url"}fullWidth value={url} onChange={(e)=>setUrl(e.target.value)}/>
-                    <Button onClick={scrapeUrl}>Scrape</Button>
+                    <TextField label={"Url"} fullWidth value={url} onChange={(e)=>setUrl(e.target.value)}/>
+
+                    <div>
+                        <TextField value={delimiter} label={"Delimiter"} onChange={(e)=>setDelimiter((e.target.value))}/>
+                        <Button onClick={(e)=>setDelimiter("\t")}>use Tab</Button>
+                    </div>
+                    <div>
+                        <TextField value={endOfLine === "\r\n"? "'\\r\\n'" : endOfLine=="\r" ? "'\\r'":endOfLine} label={"EndOfLine"} onChange={(e)=>setEndofLine((e.target.value))}/>
+                        <Button onClick={(e)=>setEndofLine("\r\n")}>use Windows EOL</Button>
+                        <Button onClick={(e)=>setEndofLine("\r")}>use Linux EOL</Button>
+                    </div>
+                    <div>
+                        <Button onClick={scrapeUrl}>Scrape</Button>
+                    </div>
                     <div>Scraping page: {page}</div>
                 </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={10}>
-                    <Button onClick={()=>saveTextAsFile(scrape,"scrape.csv")}>Download as csv (separated by ";")</Button>
+                    <Button onClick={()=>saveTextAsFile(scrape,"scrape.csv")}>Download as csv</Button>
                 </Grid>
                 <Grid item xs={1}> </Grid>
                 <Grid item xs={1}> </Grid>
